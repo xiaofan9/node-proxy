@@ -2,12 +2,12 @@
 
 const http = require("http");
 const portfinder = require("portfinder");
-
+const chalk = require("chalk");
 const app = require("../app");
 const pkg = require("../package.json");
 const config = require("../config");
 const kill = require("./kill");
-const debug = require("debug")(pkg.name + ":admin");
+const debug = require("debug")(pkg.name + ":serve");
 
 const port = normalizePort(config.port || process.env.PORT);
 const host = config.host || "0.0.0.0";
@@ -65,6 +65,8 @@ function onListening() {
 
   if (isPord) {
     console.log("Your application is Listening on " + bind);
+  } else {
+    console.log(chalk.blue("http://localhost:" + addr.port));
   }
 }
 

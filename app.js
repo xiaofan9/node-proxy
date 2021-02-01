@@ -8,7 +8,6 @@ const compress = require("koa-compress");
 const errorPage = require("./app/middleware/error404");
 const cors = require("koa2-cors");
 const config = require("./config");
-
 const app = new Koa();
 
 if (config.cors) {
@@ -40,5 +39,11 @@ app.use(
     enableTypes: ["json", "form", "text"],
   }),
 );
+
+app.use((ctx) => {
+  ctx.body = ctx.request.body;
+
+  console.log(ctx.query, ctx.request.header);
+});
 
 module.exports = app;
