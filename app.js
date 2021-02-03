@@ -1,13 +1,16 @@
-const path = require("path");
 const Koa = require("koa");
 const json = require("koa-json");
 const logger = require("koa-logger");
 const onerror = require("koa-onerror");
 const bodyParser = require("koa-bodyparser");
 const compress = require("koa-compress");
-const errorPage = require("./app/middleware/error404");
 const cors = require("koa2-cors");
+const errorPage = require("./app/middleware/error404");
 const config = require("./config");
+const router = require("./app/controller");
+
+require("./app/model/connect");
+
 const app = new Koa();
 
 if (config.cors) {
@@ -40,10 +43,8 @@ app.use(
   }),
 );
 
-app.use((ctx) => {
-  ctx.body = ctx.request.body;
-
-  console.log(ctx.query, ctx.request.header);
-});
+app
+  .use(router.routes())
+  .use(router.allowedMethods());
 
 module.exports = app;

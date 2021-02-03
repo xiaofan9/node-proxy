@@ -66,7 +66,7 @@ function onListening() {
   if (isPord) {
     console.log("Your application is Listening on " + bind);
   } else {
-    console.log(chalk.blue("http://localhost:" + addr.port));
+    console.log(chalk.blue("http://" + config.host + ":" + addr.port));
   }
 }
 
