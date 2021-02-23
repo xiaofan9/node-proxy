@@ -2,13 +2,14 @@ const Koa = require("koa");
 const json = require("koa-json");
 const logger = require("koa-logger");
 const onerror = require("koa-onerror");
-const bodyParser = require("koa-bodyparser");
+const bodyParser = require("koa-body");
 const compress = require("koa-compress");
 const cors = require("koa2-cors");
 const errorPage = require("./app/middleware/error404");
 const config = require("./config");
 const router = require("./app/controller");
 
+require("module-alias/register");
 require("./app/model/connect");
 
 const app = new Koa();
@@ -39,9 +40,15 @@ app.use(json());
 // 解析 post body
 app.use(
   bodyParser({
+    multipart: true,
     enableTypes: ["json", "form", "text"],
   }),
 );
+
+app.use((ctx, next) => {
+  console.log(ctx.request.body);
+  next();
+});
 
 app
   .use(router.routes())
