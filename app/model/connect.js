@@ -1,20 +1,33 @@
 const mysql = require("mysql");
 const config = require("@root/config/db");
 
-const db = mysql.createConnection(config);
+const connection = mysql.createConnection(config);
 
-db.connect((err) => {
-  if(err) throw err;
+const query = (sql) => {
+  return new Promise((resolve, reject) => {
+    connection.connect((err) => {
+      if(err) throw err;
 
-  console.log("mysql成功连接！");
-});
+      console.log("mysql成功连接！");
+    });
 
-db.end((err) => {
-  if(err) throw err;
+    connection.query("use node_proxy");
+    connection.query(sql, (err, results, fields) => {
+      if(err) {
+        throw err;
+      }
 
-  console.log("mysql关闭连接！");
-});
+      resolve(results, fields);
+    });
+
+    connection.end((err) => {
+      if(err) throw err;
+
+      console.log("mysql关闭连接！");
+    });
+  });
+};
 
 module.exports = {
-
+  query,
 };
