@@ -5,11 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>设置代理</title>
+  <script src="https://unpkg.com/axios" defer></script>
+  <style></style>
 </head>
 <body>
-  <form>
-    <div><label>需要代理的路径：</label><input></div>
-    <button>提交</button>
-  </form>
+  <div class="proxy-inp"><label>需要代理的路径：</label><input></div>
+  <button class="sub-btn">提交</button>
+
+  <script>
+    window.onload = function() {
+      const sub = document.querySelector(".sub-btn");
+      const axios = window.axios;
+
+      sub.onclick = function() {
+        axios.post("/api/");
+      };
+    };
+  </script>
 </body>
 </html>

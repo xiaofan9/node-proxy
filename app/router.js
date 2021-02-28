@@ -5,6 +5,10 @@ module.exports = (router) => {
     });
   });
 
+  router.post("/api/setProxy", (ctx, next) => {
+
+  });
+
   router.all("(.*)", (ctx, next) => {
     ctx.body = "";
   });
