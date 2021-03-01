@@ -47,6 +47,7 @@
     "@root": ".",
     "@app": "./app",
     "@middleware": "./app/middleware",
+    "@controller": "./app/controller",
     "@view": "./app/view"
   }
 }

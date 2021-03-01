@@ -9,14 +9,6 @@
   <style></style>
 </head>
 <body>
-  <div>
-    <p style="color: red">使用说明：</p>
-    <pre style="color:cadetblue">
-例如：
-代理地址为：https://unpkg.com/，key为125seasx。
-假设要代理get请求，原地址为：https://unpkg.com/v-axios，代理地址为：https://proxy.aisifan.cn/v-axios?key=125seasx。
-    </pre>
-  </div>
   <div class="proxy-inp">
     <label class="proxy-inp__label">需要代理的地址：</label>
     <input class="proxy-inp__text">
@@ -53,7 +45,7 @@
             window.alert("设置成功！");
     
             const key = document.querySelector(".proxy-key");
-            key.innerHTML = "key：" + res.data.data;
+            key.innerHTML = "key: " + res.data.data;
           }
         });
       };
