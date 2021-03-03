@@ -3246,10 +3246,10 @@ uuid@^3.2.1:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
-v-axios@^3.0.4-beta.1:
-  version "3.0.4-beta.1"
-  resolved "https://registry.yarnpkg.com/v-axios/-/v-axios-3.0.4-beta.1.tgz#ff2a73051892d3616717c0337281be2111e904e0"
-  integrity sha512-1a695FN5Rym4wiJXQvpDbk5+ugH1hc7ziyQdZrS0393kHF9Ob1inxOBQJZb6YQ91jBrB52dzk/41vzW7hLx1Ug==
+v-axios@^3.0.4-beta.2:
+  version "3.0.4-beta.2"
+  resolved "https://registry.npm.taobao.org/v-axios/download/v-axios-3.0.4-beta.2.tgz#76160f89e9f3ba863a0547ef20d28c1922ffc166"
+  integrity sha1-dhYPienzuoY6BUfvINKMGSL/wWY=
   dependencies:
     axios "^0.20.0"
 

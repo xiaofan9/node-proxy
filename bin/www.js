@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const http = require("http");
-const portfinder = require("portfinder");
+const portFinder = require("portfinder");
 const chalk = require("chalk");
 const app = require("../app");
 const pkg = require("../package.json");
@@ -14,7 +14,7 @@ const host = config.host || "0.0.0.0";
 const server = http.createServer(app.callback());
 
 let handlePort;
-let isPord = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === "production";
 /**
  * 创建http 服务器
  */
@@ -22,9 +22,9 @@ let isPord = process.env.NODE_ENV === "production";
 if (config.portHandle === "kill") {
   handlePort = kill(port);
 } else {
-  portfinder.basePort = port;
+  portFinder.basePort = port;
 
-  handlePort = portfinder.getPortPromise();
+  handlePort = portFinder.getPortPromise();
 }
 
 handlePort
@@ -63,10 +63,10 @@ function onListening() {
 
   debug("Listening on " + bind);
 
-  if (isPord) {
+  if (isProd) {
     console.log("Your application is Listening on " + bind);
   } else {
-    console.log(chalk.blue("http://" + config.host + ":" + addr.port));
+    console.log(chalk.blue("http://" + (config.host || "localhost") + ":" + addr.port));
   }
 }
 

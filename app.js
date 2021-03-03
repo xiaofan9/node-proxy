@@ -16,7 +16,7 @@ const config = require("./config");
 const app = new Koa();
 
 if (config.cors) {
-  app.use(cors());
+  app.use(cors(config.corsConfig));
 }
 
 // koa的错误处理
