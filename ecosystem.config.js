@@ -4,7 +4,7 @@ module.exports = {
   apps: [
     {
       name: pkg.name, // 名称
-      script: "./bin/www", // 脚本地址
+      script: "./bin/www.js", // 脚本地址
       env: {
         // env 配置
         COMMON_VARIABLE: "true",
@@ -25,25 +25,4 @@ module.exports = {
       listen_timeout: 10000, // 监听超时时间
     },
   ],
-  deploy: {
-    production: {
-      // 登录服务器的用户名
-      user: "root",
-      // 服务器ip
-      host: ["42.192.232.58"],
-      // 服务器ssh登录端口，未修改的话一般默认为22
-      port: "22",
-      // 指定拉取的分支
-      ref: "origin/master",
-      // 远程仓库地址
-      repo: "git@github.com:xiaofan9/node-proxy.git",
-      // 指定代码拉取到服务器的目录
-      path: "/root/web/node-proxy",
-      ssh_options: "StrictHostKeyChecking=no",
-      "post-deploy": "npm install && pm2 reload " + pkg.name, // 部署后执行
-      env: {
-        NODE_ENV: "production",
-      },
-    },
-  },
 };
