@@ -6,25 +6,29 @@ const { Sequelize } = require("sequelize");
 const dbConfig = require("../../config/db");
 
 const autoLoadModel = async (ctx, next) => {
-  if (!ctx.models.__loading) {
-    const fileNames = fs.readdirSync(path.resolve(__dirname, "../model"));
-
-    for (const fileName of fileNames) {
-      const Model = ctx.sequelize.import("../model/" + fileName);
-      const modelName = Model.tableName
-        ?.split("_")
-        ?.map?.((str) => {
-          return lodash.capitalize(str);
-        })
-        ?.join("");
-
-      ctx.models[modelName] = Model;
+  try {
+    if (!ctx.models.__loading) {
+      const fileNames = fs.readdirSync(path.resolve(__dirname, "../model"));
+  
+      for (const fileName of fileNames) {
+        const Model = ctx.sequelize.import("../model/" + fileName);
+        const modelName = Model.tableName
+          ?.split("_")
+          ?.map?.((str) => {
+            return lodash.capitalize(str);
+          })
+          ?.join("");
+  
+        ctx.models[modelName] = Model;
+      }
+  
+      ctx.models.__loading = true;
+  
+      // 同步所有的模型
+      await ctx.sequelize.sync({ alter: true });
     }
-
-    ctx.models.__loading = true;
-
-    // 同步所有的模型
-    await ctx.sequelize.sync({ alter: true });
+  } catch (e) {
+    console.error('middleware-sequelize', String(e))
   }
 
   await next();

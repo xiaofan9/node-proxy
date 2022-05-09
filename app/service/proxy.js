@@ -1,5 +1,4 @@
 const url = require("url");
-const { request } = require("v-axios");
 const { urlResolve } = require("../utils");
 
 module.exports = async (ctx, key) => {
@@ -21,11 +20,13 @@ module.exports = async (ctx, key) => {
 
     searchParams.delete("proxy_key");
 
-    return request(nUrl.href, ctx.method)(null, {
-      params: searchParams,
-      data: ctx.req.body,
+    const res = await ctx.fetch.request( nUrl.href,ctx.method)(null, {
+      params: searchParams??{},
+      data: ctx.req.body ?? {},
     });
+
+    return res.data;
   } else {
-    throw "key值不存在，请先去设置代理获取到key值后在尝试！";
+    throw "proxy_key值不存在，请先去设置代理获取到proxy_key值后在尝试！";
   }
 };

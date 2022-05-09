@@ -5,7 +5,7 @@ module.exports = async (ctx, next) => {
     const { proxy_key: key } = ctx.query || {};
 
     if (!key) {
-      throw "请提供key值！";
+      throw "请提供proxy_key值！";
     }
 
     const result = await proxyService(ctx, key);

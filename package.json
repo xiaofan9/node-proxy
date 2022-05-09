@@ -30,7 +30,7 @@
     "pm2": "^5.2.0",
     "portfinder": "^1.0.28",
     "sequelize": "^5.22.5",
-    "v-axios": "^3.0.8"
+    "v-axios": "^3.0.9"
   },
   "devDependencies": {
     "@vercel/node": "^1.15.0",

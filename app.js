@@ -11,6 +11,7 @@ const nunjucks = require("./app/middleware/nunjucks");
 const sequelize = require("./app/middleware/sequelize")
 
 const config = require("./config");
+const fetch = require("./app/middleware/fetch");
 
 const app = new Koa();
 
@@ -48,6 +49,8 @@ app.use(
     enableTypes: ["json", "form", "text"],
   }),
 );
+
+fetch(app)
 
 sequelize(app);
 
