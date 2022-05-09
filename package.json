@@ -1,0 +1,50 @@
+{
+  "name": "node-proxy",
+  "version": "1.0.1",
+  "main": "app.js",
+  "bin": "./bin/www.js",
+  "author": "sifan <718662552@qq.com>",
+  "description": "koa proxy service",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production&& set NODE_ENV=production && node ./bin/www",
+    "start:pm2": "pm2 start ecosystem.config.js",
+    "reload:pm2": "pm2 reload ecosystem.config.js",
+    "dev": "cross-env NODE_ENV=development&& set NODE_ENV=development && nodemon ./bin/www",
+    "debug": "cross-env debug=node-proxy:*&& set debug=node-proxy:* && npm run dev"
+  },
+  "dependencies": {
+    "@koa/router": "^10.1.1",
+    "crypto": "^1.0.1",
+    "fs-extra": "^10.1.0",
+    "koa": "^2.13.4",
+    "koa-body": "^5.0.0",
+    "koa-compress": "^5.1.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.1",
+    "koa-onerror": "^4.2.0",
+    "koa-static": "^5.0.0",
+    "koa2-cors": "^2.0.6",
+    "mysql2": "^2.3.3",
+    "nunjucks": "^3.2.3",
+    "pm2": "^5.2.0",
+    "portfinder": "^1.0.28",
+    "sequelize": "^5.22.5",
+    "v-axios": "^3.0.8"
+  },
+  "devDependencies": {
+    "@vercel/node": "^1.15.0",
+    "chalk": "^4.1.0",
+    "cross-env": "^7.0.3",
+    "debug": "^4.3.4",
+    "eslint": "^8.14.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "nodemon": "^2.0.16",
+    "vercel": "^24.2.0"
+  }
+}

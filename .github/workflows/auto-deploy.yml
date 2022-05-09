@@ -1,0 +1,36 @@
+name: Auto Deploy
+
+# on:
+#   push:
+#     branches:
+#       - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # 部署到服务器
+      - name: Deploy-Service
+        uses: appleboy/ssh-action@master
+        with:
+          # 远程服务器地址
+          host: ${{ secrets.HOST }}
+          # 远程服务器用户名
+          username: ${{ secrets.USERNAME }}
+          # 远程服务器密码
+          password: ${{ secrets.PASSWORD }}
+          # 远程服务器端口号
+          port: ${{ secrets.PORT }}
+          # 命令超时配置 默认10m
+          command_timeout: 20m
+          # 运行在远程服务器的命令
+          # 1. 进入项目目录
+          # 2. 下载发布包
+          # 3. 解压缩发布包
+          # 4. 安装生产环境依赖
+          # 5. pm2运行配置文件
+          script: |
+            cd /root/web
+            ./deploy.sh node-proxy

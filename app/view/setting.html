@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>设置代理</title>
+  <script src="https://unpkg.com/axios"></script>
+  <style></style>
+</head>
+
+<body>
+  <div class="proxy-inp">
+    <label class="proxy-inp__label">需要代理的地址：</label>
+    <input class="proxy-inp__text" style="width: 180px; height: 22px"/>
+  </div>
+  <div class="proxy-key" style="margin-bottom: 6px">proxy_key：</div>
+  <button class="sub-btn">提交</button>
+
+  <script>
+    window.onload = function () {
+      const sub = document.querySelector(".sub-btn");
+      const text = document.querySelector(".proxy-inp__text");
+      const axios = window.axios;
+
+      sub.onclick = function () {
+        if (!text.value) {
+          window.alert("请输入要代理的路径");
+
+          return;
+        }
+
+        if (
+          !/^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/.test(
+            text.value
+          )
+        ) {
+          window.alert("请输入正确的代理的路径");
+
+          return;
+        }
+
+        axios
+          .post("/api/setProxy", {
+            url: text.value,
+          })
+          .then((res) => {
+            if (res.data.code === 200) {
+              window.alert("设置成功！");
+
+              const key = document.querySelector(".proxy-key");
+              key.innerHTML = "proxy_key: " + res.data.data;
+            }
+          }).catch((err) => {
+            window.alert("设置失败！请重试！");
+          });
+      };
+    };
+  </script>
+</body>
+
+</html>
